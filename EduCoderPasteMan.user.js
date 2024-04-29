@@ -10,7 +10,7 @@
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
-//lisense        MIT
+// @license        MIT
 // ==/UserScript==
 
 (function() {
