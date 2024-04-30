@@ -5,11 +5,12 @@
 // @description  Copy and paste for unlocking the level of the EduCoder. This script is only enabled on the public network EduCoder by default. If you want to enable it on the private network/school network EduCoder, please edit the script manually. Editing instructions are included in the script.
 // @namespace    https://bbs.tampermonkey.net.cn/
 // @source       https://github.com/gaobobo/EduCoderPasteMan
-// @version      1.0.2
-// @author       Gao Shibo
+// @version      1.0.3
+// @author       Gao Shibo, Lydia
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
+// 按照上述格式添加匹配的网址，使用*代替变化的部分。例如上一行表示所有https://tg.zcst.edu.cn/XXXXXX的网址。
 // @license        MIT
 // ==/UserScript==
 
