@@ -12,7 +12,7 @@ jobs:
           fetch-tags: true
       - name: Getting lastest tag
         run: |
-          lastest_tag = $(git describe --tags --abbrev=0)
+          lastest_tag = $(git describe)
           echo "lastest_tag=$lastest_tag"
       - name: Create Release
         run: |
