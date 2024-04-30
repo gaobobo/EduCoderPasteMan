@@ -1,0 +1,30 @@
+name: Auto Update README.md URL to Latest Version
+run-name: Updating README.md URL to Latest Version
+on: 
+  release:
+    types: 
+      - published
+jobs:
+  job1:
+    name: Getting lastest version and
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting latest release version
+        run: |
+          latest_version=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')
+      - name: Create DocUpdating Branch
+        run: |
+          git switch -c autoAction_DocUpdate
+      - name: Update README.md URL to latest version
+        run: |
+          sed -i "s|v[0-9]\.[0-9]\.[0-9]|$latest_version|g" README.md
+      - name: Commit and Push Changes
+        run: |
+          git add README.md
+          git commit -m "Auto Update README.md URL to Latest Version"
+          git push origin autoAction_DocUpdate
+      - name: Create Pull Request
+        run: |
+          gh pr create --title "Auto Update README.md URL to Latest Version" --body "Auto Update README.md URL to Latest Version" --base main --head autoAction_DocUpdate
+
+
