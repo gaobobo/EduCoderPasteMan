@@ -6,12 +6,11 @@
 // @namespace    https://bbs.tampermonkey.net.cn/
 // @source       https://github.com/gaobobo/EduCoderPasteMan
 // @version      1.0.0
-// @description  try to take over the world!
 // @author       Gao Shibo
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
-//lisense        MIT
+// @license        MIT
 // ==/UserScript==
 
 (function() {
