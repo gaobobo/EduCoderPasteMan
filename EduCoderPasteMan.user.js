@@ -10,6 +10,7 @@
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
+// 按照上述格式添加匹配的网址，使用*代替变化的部分。例如上一行表示所有https://tg.zcst.edu.cn/XXXXXX的网址。
 // @license        MIT
 // ==/UserScript==
 
