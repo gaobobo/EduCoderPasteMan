@@ -9,8 +9,7 @@ jobs:
     name: Getting lastest version and
     runs-on: ubuntu-latest
     steps:
-      -name: Checkout Repository
-       uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Getting latest release version
         run: |
           latest_version=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')
