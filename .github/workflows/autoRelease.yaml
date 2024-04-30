@@ -13,6 +13,7 @@ jobs:
       - name: Getting lastest tag
         run: |
           cd ${{ github.workspace }}
+          ll
           latest_tag=$(git describe --tags --abbrev=0)
       - name: Create Release
         run: |
