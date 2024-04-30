@@ -6,7 +6,7 @@
 // @namespace    https://bbs.tampermonkey.net.cn/
 // @source       https://github.com/gaobobo/EduCoderPasteMan
 // @version      1.0.0
-// @author       Gao Shibo
+// @author       Gao Shibo, Lydia
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
