@@ -9,11 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-tags: true
+          depth: 0
       - name: Getting lastest tag
         run: |
-          lastest_tag = $(git describe)
-          echo "lastest_tag=$lastest_tag"
+          latest_tag=$(git describe --tags --abbrev=0)
       - name: Create Release
         run: |
           gh release create $latest_tag -t $latest_tag -n "$latest_tag" --note-from-tag --generate-notes ${{ github.workspace }}/EduCoderPasteMan.user.js
