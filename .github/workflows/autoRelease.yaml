@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          depth: 0
+          fetch-depth: 0
       - name: Getting lastest tag
         run: |
           latest_tag=$(git describe --tags --abbrev=0)
