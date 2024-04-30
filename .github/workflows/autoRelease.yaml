@@ -15,6 +15,7 @@ jobs:
       - name: Getting lastest tag
         run: |
           latest_tag=$(git describe --tags --abbrev=0)
+          echo $latest_tag
       - name: Create Release
         run: |
           gh release create $latest_tag -t $latest_tag --notes-from-tag ${{ github.workspace }}/EduCoderPasteMan.user.js
