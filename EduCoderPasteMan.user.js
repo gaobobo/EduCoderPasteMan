@@ -17,7 +17,7 @@
 (function() {
     'use strict';
 
-    if (document.getElementById("educoder").length === 0) {
+    if (document.getElementById("educoder") === null || document.getElementById("monica-content-root") === 0) {
         return;
     }
 
