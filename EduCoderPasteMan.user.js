@@ -5,7 +5,7 @@
 // @description  Copy and paste for unlocking the level of the EduCoder. This script is only enabled on the public network EduCoder by default. If you want to enable it on the private network/school network EduCoder, please edit the script manually. Editing instructions are included in the script.
 // @namespace    https://bbs.tampermonkey.net.cn/
 // @source       https://github.com/gaobobo/EduCoderPasteMan
-// @version      1.0.3
+// @version      1.0.5
 // @author       Gao Shibo, Lydia
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
@@ -17,7 +17,7 @@
 (function() {
     'use strict';
 
-    if (document.getElementById("educoder") === null || document.getElementById("monica-content-root") === 0) {
+    if (document.getElementById("educoder") === null || document.getElementById("monica-content-root") === null) {
         return;
     }
 
