@@ -10,9 +10,12 @@
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
-// 按照上述格式添加匹配的网址，使用*代替变化的部分。例如上一行表示所有https://tg.zcst.edu.cn/XXXXXX的网址。
 // @license        MIT
 // ==/UserScript==
+
+// 按照第10行格式添加匹配的网址，使用*代替变化的部分。
+// 例如第12行表示所有https://tg.zcst.edu.cn/XXXXXX的网址。
+// 将其添加到第10行的@match下即可。
 
 (function() {
     'use strict';
@@ -43,7 +46,7 @@
     ]
 
     // ramdom取index
-    const randomIndex = Math.floor(Math.random() * messages.length)
+    const randomIndex = Math.floor(Math.random() * Math.random() * messages.length);
     const message = messages[randomIndex]   // 拿出一些美妙语言
 
     const insetAlertHTML = '<div id="alersContainer" class="ant-message ant-message-top css-13xy8lc" style="left: 50%; transform: translateX(-50%); top: 8px;"><div class="ant-message-notice ant-message-notice-warning css-13xy8lc"><div class="ant-message-notice-content"><div class="ant-message-custom-content ant-message-warning"><span role="img" aria-label="exclamation-circle" class="anticon anticon-exclamation-circle"><svg viewBox="64 64 896 896" focusable="false" data-icon="exclamation-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg></span><span>'+ message +'</span></div></div></div></div>';
