@@ -109,7 +109,7 @@ function checkPage () {
 
     if (document.getElementById("educoder") !== null) {
 
-        if (document.getElementById("monaco-editor no-user-select  showUnused showDeprecated vs-dark") !== undefined) 
+        if (document.getElementById("monaco-editor no-user-select  showUnused showDeprecated vs-dark") !== null) 
             return "com.educoder.shixun.code";
         else if (document.getElementsByClassName("vnc-panel animated fadeIn").length > 0) 
             return "com.educoder.shixun.linux"
