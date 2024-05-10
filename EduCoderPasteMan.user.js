@@ -204,10 +204,10 @@ function initializeMenu () {
 
     initializeMenu();
 
-    setTimeout(function () {
-        if (checkPage() !== "com.educoder.shixun.code") 
-            return;
-    },500);
+    new Promise((resolve) => setTimeout(resolve, 500)); //delay 500ms
+
+    if (checkPage() !== "com.educoder.shixun.code") 
+        return;
 
 
     if (GM_getValue("timerRate") !== -1) {
