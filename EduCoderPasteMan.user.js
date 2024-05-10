@@ -109,7 +109,7 @@ function checkPage () {
 
     if (document.getElementById("educoder") !== null) {
 
-        if (document.getElementById("monaco-editor no-user-select  showUnused showDeprecated vs-dark") !== null) 
+        if (document.getElementById("monaco-aria-container") !== null) 
             return "com.educoder.shixun.code";
         else if (document.getElementsByClassName("vnc-panel animated fadeIn").length > 0) 
             return "com.educoder.shixun.linux"
@@ -204,8 +204,11 @@ function initializeMenu () {
 
     initializeMenu();
 
-    if (checkPage() !== "com.educoder.shixun.code") 
-        return;
+    setTimeout(function () {
+        if (checkPage() !== "com.educoder.shixun.code") 
+            return;
+    },500);
+
 
     if (GM_getValue("timerRate") !== -1) {
         timerFaster(GM_getValue("timerRate"));
