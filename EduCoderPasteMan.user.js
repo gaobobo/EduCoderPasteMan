@@ -11,6 +11,10 @@
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
 // @license        MIT
+// @grant       GM_registerMenuCommand
+// @grant       GM_unregisterMenuCommand
+// @grant      GM_setValue
+// @grant      GM_getValue
 // ==/UserScript==
 
 // 按照第10行格式添加匹配的网址，使用*代替变化的部分。
@@ -25,22 +29,47 @@
  */
 function flyoutMessage (message, showTime) {
 
-    const insetAlertHTML = '<div id="alersContainer" class="ant-message ant-message-top css-13xy8lc" style="left: 50%; transform: translateX(-50%); top: 8px;"><div class="ant-message-notice ant-message-notice-warning css-13xy8lc"><div class="ant-message-notice-content"><div class="ant-message-custom-content ant-message-warning"><span role="img" aria-label="exclamation-circle" class="anticon anticon-exclamation-circle"><svg viewBox="64 64 896 896" focusable="false" data-icon="exclamation-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg></span><span>'+ message +'</span></div></div></div></div>';
+    let flyoutMessageHTML = document.createElement("div");
 
-    var tempDiv = document.createElement('div');
-    tempDiv.innerHTML = insetAlertHTML;
-    document.body.appendChild(tempDiv.firstChild);
+    if (document.getElementById("alersContainer") === null) {
+        flyoutMessageHTML.id = "alersContainer";
+        flyoutMessageHTML.style.position = "fixed";
+        flyoutMessageHTML.style.top = "8px";
+        flyoutMessageHTML.style.width = "100%";
+        flyoutMessageHTML.style.zIndex = "9999";
+        flyoutMessageHTML.style.margin = "10px auto";
+        flyoutMessageHTML.style.alignItems = "center";
+        flyoutMessageHTML.style.display = "flex";
+        flyoutMessageHTML.style.flexDirection = "column";
+    } else {
+        flyoutMessageHTML = document.getElementById("alersContainer");
+    }
 
-    const alersContainer = document.getElementById("alersContainer");
+    const flyoutMessageHTML_content = document.createElement("span");
+    flyoutMessageHTML_content.style.margin = "5px"
+    flyoutMessageHTML_content.style.padding = "9px 12px";
+    flyoutMessageHTML_content.style.fontSize = "14px";
+    flyoutMessageHTML_content.style.backgroundColor = "white";
+    flyoutMessageHTML_content.style.borderRadius = "4px";
+    flyoutMessageHTML_content.style.boxShadow = "0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05)";
+    flyoutMessageHTML_content.style.width = "fit-content";
+
+    flyoutMessageHTML_content.innerText = message;
+
+    flyoutMessageHTML.appendChild(flyoutMessageHTML_content);
+
+    document.body.appendChild(flyoutMessageHTML);
 
     if (showTime >= 0) { 
-    setTimeout(function() {alersContainer.remove();}, showTime);
+        setTimeout(function() {flyoutMessageHTML_content.remove();}, showTime);
     }
+
 }
 
 /**
  * Accelerate timer.
  * 
+ * @description NOTICE: must be used before the timer is created.
  * @param {int} rate Timer acceleration rate. 0 stop Timer.
  */
 function timerFaster (rate) {
@@ -80,7 +109,7 @@ function checkPage () {
 
     if (document.getElementById("educoder") !== null) {
 
-        if (document.getElementById("monica-content-root") !== undefined) 
+        if (document.getElementById("monaco-editor no-user-select  showUnused showDeprecated vs-dark") !== undefined) 
             return "com.educoder.shixun.code";
         else if (document.getElementsByClassName("vnc-panel animated fadeIn").length > 0) 
             return "com.educoder.shixun.linux"
@@ -94,25 +123,108 @@ function checkPage () {
 
 }
 
+/**
+ * Initialize menu items
+ * 
+ */
+function initializeMenu () {
+
+    if (GM_getValue("timerRate") === undefined || GM_getValue("timerRate") === -1) {
+
+        const menuItems = [
+
+            GM_registerMenuCommand(
+                "(beta)开启定时器加速-2X",
+                function () {
+                    GM_setValue("timerRate",2);
+                    menuItems.forEach(GM_unregisterMenuCommand);
+                    initializeMenu();
+                    flyoutMessage("定时器加速已开启。刷新页面后生效。", 5000);
+                }
+            ),
+
+            GM_registerMenuCommand(
+                "(beta)开启定时器加速-20X",
+                function () {
+                    GM_setValue("timerRate",20);
+                    menuItems.forEach(GM_unregisterMenuCommand);
+                    initializeMenu();
+                    flyoutMessage("定时器加速已开启。刷新页面后生效。", 5000);
+                }
+            ),
+
+            GM_registerMenuCommand(
+                "(beta)开启定时器加速-50X",
+                function () {
+                    GM_setValue("timerRate",50);
+                    menuItems.forEach(GM_unregisterMenuCommand);
+                    initializeMenu();
+                    flyoutMessage("定时器加速已开启。刷新页面后生效。", 5000);
+                }
+            ),
+
+            GM_registerMenuCommand(
+                "(beta)开启定时器加速-500X",
+                function () {
+                    GM_setValue("timerRate",500);
+                    menuItems.forEach(GM_unregisterMenuCommand);
+                    initializeMenu();
+                    flyoutMessage("定时器加速已开启。刷新页面后生效。", 5000);
+                }
+            ),
+
+        ]
+
+    } else {
+
+        const menuItems = [
+            
+            GM_registerMenuCommand(
+                "(beta)关闭定时器加速",
+                function () {
+                    GM_setValue("timerRate",-1);
+                    menuItems.forEach(GM_unregisterMenuCommand);
+                    initializeMenu();
+                    flyoutMessage("定时器加速已关闭。刷新页面后生效。", 5000);
+                }
+            )
+
+        ]
+    }
+
+
+}
+
+/**
+ * Main function.
+ * 
+ */
 (function() {
     'use strict';
+
+    initializeMenu();
 
     if (checkPage() !== "com.educoder.shixun.code") 
         return;
 
+    if (GM_getValue("timerRate") !== -1) {
+        timerFaster(GM_getValue("timerRate"));
+        GM_setValue("timerRate", -1);
+
+        flyoutMessage("定时器加速已开启。仅本次会话有效，刷新后将自动恢复。", 5000);
+    }
+
     hookListener();
 
-    // 一些可爱的msg
-    const messages = [
-        "脚本已运行。你现在可以自由地复制粘贴了。",
-        "什么垃圾edocoder，monaco写的一坨💩",
-        "已破解头歌的复制粘贴，Enjoy It ！",
-        "FBI Warning⚠️⚠️⚠️! Already F***ed Educoder's ass! Damn!",
+    let messages = [
+        "✔️脚本已运行。你现在可以自由地复制粘贴了。",
+        "✔️已破解头歌的复制粘贴，Enjoy It ！",
+        "✔️什么垃圾edocoder，monaco写的一坨💩",
+        "✔️FBI Warning⚠️⚠️⚠️! Already F***ed Educoder's ass! Damn!",
     ]
 
-    // ramdom取index
     const randomIndex = Math.floor(Math.random() * Math.random() * messages.length);
-    const message = messages[randomIndex]   // 拿出一些美妙语言
-    flyoutMessage(message,5000);
+    messages = messages[randomIndex]
+    flyoutMessage(messages,5000);
 
 })();
