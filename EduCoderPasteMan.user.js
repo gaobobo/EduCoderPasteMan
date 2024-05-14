@@ -109,7 +109,7 @@ function checkPage () {
 
     if (document.getElementById("educoder") !== null) {
 
-        if (document.getElementById("monaco-aria-container") !== null) 
+        if (document.getElementsByClassName("monaco-aria-container").length > 0) 
             return "com.educoder.shixun.code";
         else if (document.getElementsByClassName("vnc-panel animated fadeIn").length > 0) 
             return "com.educoder.shixun.linux"
@@ -204,30 +204,29 @@ function initializeMenu () {
 
     initializeMenu();
 
-    new Promise((resolve) => setTimeout(resolve, 500)); //delay 500ms
-
-    if (checkPage() !== "com.educoder.shixun.code") 
-        return;
-
-
     if (GM_getValue("timerRate") !== -1) {
         timerFaster(GM_getValue("timerRate"));
         GM_setValue("timerRate", -1);
 
-        flyoutMessage("定时器加速已开启。仅本次会话有效，刷新后将自动恢复。", 5000);
+        flyoutMessage("定时器加速已开启。仅本次会话有效，刷新后将自动恢复。\n该功能为测试功能，由此引发的问题概不负责。", 5000);
     }
 
-    hookListener();
-
-    let messages = [
-        "✔️脚本已运行。你现在可以自由地复制粘贴了。",
-        "✔️已破解头歌的复制粘贴，Enjoy It ！",
-        "✔️什么垃圾edocoder，monaco写的一坨💩",
-        "✔️FBI Warning⚠️⚠️⚠️! Already F***ed Educoder's ass! Damn!",
-    ]
-
-    const randomIndex = Math.floor(Math.random() * Math.random() * messages.length);
-    messages = messages[randomIndex]
-    flyoutMessage(messages,5000);
+    setTimeout(function() {
+        if (checkPage() !== "com.educoder.shixun.code") 
+            return;
+    
+        hookListener();
+    
+        let messages = [
+            "✔️脚本已运行。你现在可以自由地复制粘贴了。",
+            "✔️已破解头歌的复制粘贴，Enjoy It ！",
+            "✔️什么垃圾edocoder，monaco写的一坨💩",
+            "✔️FBI Warning⚠️⚠️⚠️! Already F***ed Educoder's ass! Damn!",
+        ]
+    
+        const randomIndex = Math.floor(Math.random() * Math.random() * messages.length);
+        messages = messages[randomIndex]
+        flyoutMessage(messages,5000);
+    },3000);
 
 })();
