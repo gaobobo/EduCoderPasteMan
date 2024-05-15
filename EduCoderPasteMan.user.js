@@ -5,7 +5,7 @@
 // @description  Copy and paste for unlocking the level of the EduCoder. This script is only enabled on the public network EduCoder by default. If you want to enable it on the private network/school network EduCoder, please edit the script manually. Editing instructions are included in the script.
 // @namespace    https://bbs.tampermonkey.net.cn/
 // @source       https://github.com/gaobobo/EduCoderPasteMan
-// @version      2.0.1-alpha
+// @version      2.0.2-alpha
 // @author       Gao Shibo, Lydia
 // @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
@@ -84,20 +84,30 @@ function timerFaster (rate) {
 /**
  * Hook listeners to remove copy and paste restrictions.
  * 
+ * @returns {EventListener} Return the Listener object that hooked with remove() method.
  */
 function hookListener () {
     const Listener = EventTarget.prototype.addEventListener;
+
     EventTarget.prototype.addEventListener=function (...args){
+        
         if (args.length != 0 && args[0] === "keydown" && args[1].name === "checkPaste") {
-            return null;
+            eventList[args[0]].push({
+                event: args[1],
+                remove: () => this.removeEventListener.apply(this,...args)
+            })
         } else if (args.length != 0 && args[0] === "paste" && args[1].name === "checkPaste") {
-            return null;
-        }
+            eventList[args[0]].push({
+                event: args[1],
+                remove: () => this.removeEventListener.apply(this,...args)
+            })    }
         else {
             Listener.call(this,...args);
         }
-
+        
     }
+
+    return Listener;
 }
 
 /**
@@ -211,11 +221,13 @@ function initializeMenu () {
         flyoutMessage("定时器加速已开启。仅本次会话有效，刷新后将自动恢复。\n该功能为测试功能，由此引发的问题概不负责。", 5000);
     }
 
+    let listenerPrepareRemove = hookListener();
+
     setTimeout(function() {
         if (checkPage() !== "com.educoder.shixun.code") 
             return;
     
-        hookListener();
+        listenerPrepareRemove.remove;
     
         let messages = [
             "✔️脚本已运行。你现在可以自由地复制粘贴了。",
