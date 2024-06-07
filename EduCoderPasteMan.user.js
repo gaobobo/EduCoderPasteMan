@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         头歌复制粘贴
 // @name:en      EduCoder Freedom Paste
-// @description  用于解除头歌的关卡的复制粘贴。本脚本默认只在公网上启用，如要在私网/校内网启用，请手动编辑脚本，脚本内附有编辑说明。
+// @description  用于解除头歌的关卡的复制粘贴。如要在私网/校内网启用，请手动编辑脚本，脚本内附有编辑说明。（目前公网不可用）
 // @description  Copy and paste for unlocking the level of the EduCoder. This script is only enabled on the public network EduCoder by default. If you want to enable it on the private network/school network EduCoder, please edit the script manually. Editing instructions are included in the script.
 // @namespace    https://bbs.tampermonkey.net.cn/
 // @source       https://github.com/gaobobo/EduCoderPasteMan
-// @version      3.0.0-alpha
+// @version      3.0.1
 // @author       Gao Shibo, Lydia
-// @match        https://www.educoder.net/*
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
 // @license        MIT
