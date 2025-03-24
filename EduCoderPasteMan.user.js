@@ -9,6 +9,7 @@
 // @author       Gao Shibo, Lydia
 // @match        https://vpn.zcst.edu.cn/*
 // @match        https://tg.zcst.edu.cn/*
+// @match        http://172.16.36.150/*
 // @license        MIT
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
